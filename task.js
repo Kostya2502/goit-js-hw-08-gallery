@@ -35,14 +35,21 @@ function GalleryClick(event) {
 
 function openModal() {
     refs.modal.classList.add('is-open')
+
+    window.addEventListener('keydown', escBtnPress)
 }
 
 function closeModal() {
     refs.modal.classList.remove('is-open');
+    window.removeEventListener('keydown', escBtnPress)
     refs.modalImage.src = '';
     refs.modalImage.alt = ''
 }
 
 function Overlay(event) {
     if (event.currentTarget === event.target) { closeModal() }
+}
+
+function escBtnPress(event) {
+    if (event.code === 'Escape') { closeModal() }
 }
